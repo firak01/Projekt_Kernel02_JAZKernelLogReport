@@ -5,6 +5,5 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry exported="true" kind="src" path="/JAZKernel"/>
 	<classpathentry exported="true" kind="lib" path="/ZKernelFileCollection/log4j-1.2.14.jar"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/ZKernelFileZJar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
