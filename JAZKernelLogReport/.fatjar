@@ -1,5 +1,5 @@
 #Fat Jar Configuration File
-#Sat Jan 07 09:03:50 CET 2017
+#Mon Oct 16 19:51:06 CEST 2017
 onejar.license.required=true
 manifest.classpath=
 manifest.removesigners=true
@@ -10,5 +10,5 @@ manifest.mainclass=LogReportAllTestZZZ
 manifest.file=<createnew>
 jarname.isextern=true
 onejar.expand=
-excludes=<po|JAZKernel>;<po|ZKernelFileZJar>
+excludes=<po|JAZKernel>
 includes=
