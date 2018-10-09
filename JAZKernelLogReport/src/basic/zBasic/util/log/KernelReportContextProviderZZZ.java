@@ -3,15 +3,16 @@ package basic.zBasic.util.log;
 import basic.zBasic.ExceptionZZZ;
 import basic.zBasic.ReflectCodeZZZ;
 import basic.zBasic.util.datatype.string.StringZZZ;
+import basic.zKernel.IKernelZZZ;
 import basic.zKernel.KernelUseObjectZZZ;
 import basic.zKernel.KernelZZZ;
 
 /** Diese Klasse dient dazu andere Objekte (hier das ReportLog-Objekt)  mit Kernel-Informationen zu versorgen.
  * Damit die ReportLog - Klasse auch in anderen Projekten eingesetzt werden kann (ohne Kernel-Objekt)
- * und sehr einfach zu handhaben ist, sind die wesentlichen Methoden nämlich static 
+ * und sehr einfach zu handhaben ist, sind die wesentlichen Methoden nï¿½mlich static 
  * und es gibt keinen public Konstruktor.
  * 
- * Aus dem KernelContextProvider-Objekt können dann Einstellungen gezogen werden, die die DEFAULT Einstellungen überschreiben.
+ * Aus dem KernelContextProvider-Objekt kï¿½nnen dann Einstellungen gezogen werden, die die DEFAULT Einstellungen ï¿½berschreiben.
  * @author lindhaueradmin
  *
  */
@@ -20,21 +21,21 @@ public class KernelReportContextProviderZZZ extends KernelUseObjectZZZ {
 	private String sClassCallingOrAlias=null; //Die Klasse, von der aus diese Klasse initialisiert wird.
 	private String sLogLevel=null;     //Der LogLevel wie er von ReportLogZZZ genutzt wird.
 	
-	private String sLog4jLevel=null;  //Der loglevel, wie er für log4j in der konfigurationsdatei hinterlegt ist
-	private String sLog4jName=null; //Der logname, wie er für log4j in der konfigurationsdatei hinterlegt ist
+	private String sLog4jLevel=null;  //Der loglevel, wie er fï¿½r log4j in der konfigurationsdatei hinterlegt ist
+	private String sLog4jName=null; //Der logname, wie er fï¿½r log4j in der konfigurationsdatei hinterlegt ist
 	private String sLog4jFileConfig=null; //Der filename der properties-datei, die von log4j als Konfiguration erwartet wird.
 	private String sLog4jPathConfig=null; //Der pfad zur datei, die von log4j als Konfiguration erwartet wird.
-	private String sLog4jPatternPath=null; //Für eine datei, die ein Muster der log4j configuration datei enthält
+	private String sLog4jPatternPath=null; //Fï¿½r eine datei, die ein Muster der log4j configuration datei enthï¿½lt
 	private String sLog4jPatternFile=null;
 	
-	/** Verwende diesen Konstruktor, wenn die Informationen in einem Modul liegen, dass für diese Klasse selbst erstellt wurde. Also: Modulename = ReportLogZZZ.class.getName().
+	/** Verwende diesen Konstruktor, wenn die Informationen in einem Modul liegen, dass fï¿½r diese Klasse selbst erstellt wurde. Also: Modulename = ReportLogZZZ.class.getName().
 	* lindhaueradmin; 12.01.2007 09:22:59
 	 * @param objKernel
 	 */
-	public KernelReportContextProviderZZZ(KernelZZZ objKernel){
+	public KernelReportContextProviderZZZ(IKernelZZZ objKernel){
 		super(objKernel);
 	}
-	public KernelReportContextProviderZZZ(KernelZZZ objKernel, String sModuleCalling, String sClassCallingOrAlias){
+	public KernelReportContextProviderZZZ(IKernelZZZ objKernel, String sModuleCalling, String sClassCallingOrAlias){
 		super(objKernel);
 		this.sModuleCalling = sModuleCalling;
 		this.sClassCallingOrAlias=sClassCallingOrAlias;
@@ -44,21 +45,21 @@ public class KernelReportContextProviderZZZ extends KernelUseObjectZZZ {
 	 * @param objKernel
 	 * @param sModuleCalling
 	 */
-	public KernelReportContextProviderZZZ(KernelZZZ objKernel, String sModuleCalling){
+	public KernelReportContextProviderZZZ(IKernelZZZ objKernel, String sModuleCalling){
 		super(objKernel);
 		this.sModuleCalling = sModuleCalling;
 	}
 	
 	public String getClassCalling(){
-		/* FGL 20070111 Wenn wir von der Möglichkeit ausgehen, dass der Programm-Name fehlen darf, dann darf in diesem Fall nicht standardmäßig der ReportLogZZZ-Klassenname dafür verwendet werden.
+		/* FGL 20070111 Wenn wir von der Mï¿½glichkeit ausgehen, dass der Programm-Name fehlen darf, dann darf in diesem Fall nicht standardmï¿½ï¿½ig der ReportLogZZZ-Klassenname dafï¿½r verwendet werden.
 		if(StringZZZ.isEmpty(this.sClassCallingOrAlias)){
 			this.sClassCallingOrAlias = ReportLogZZZ.class.getName();
 		}*/
 		return this.sClassCallingOrAlias;
 	}
 	public String getModuleCalling(){
-		//Merke: Über den Modulnamen kann der Kernel die konfigurierte ini-Datei finden.
-		//            In der Ini-Datei kann dann unter dem Programmnamen (eine Section) der gewünschte Parameter ausgelesen werden.
+		//Merke: ï¿½ber den Modulnamen kann der Kernel die konfigurierte ini-Datei finden.
+		//            In der Ini-Datei kann dann unter dem Programmnamen (eine Section) der gewï¿½nschte Parameter ausgelesen werden.
 		if(StringZZZ.isEmpty(this.sModuleCalling)){
 			this.sModuleCalling = ReportLogZZZ.class.getName();
 		}
