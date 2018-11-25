@@ -52,15 +52,15 @@ public class ReportLogZZZTest extends TestCase {
 	}
 
 	/**************************************************************************/
-	/**** diese Aufr�um-Methode muss mit Leben gef�llt werden *****************/
+	/**** diese Aufräum-Methode muss mit Leben gefüllt werden *****************/
 	/**************************************************************************/
 	private void cleanUp() {
 		// do your cleanup Work
 		// this.objContextTest.recycle();
 
 		// Merke: Es wird bei Erzeugung des DJAgentContext immer ein
-		// Noesdocument k�nstlich erzeugt.
-		// Dies kann man ggf. hier l�schen.
+		// Noesdocument künstlich erzeugt.
+		// Dies kann man ggf. hier löschen.
 		/*
 		 * if (nlDoc != null) { try { nlDoc.remove(true); } catch
 		 * (NotesException e) { e.printStackTrace(); } }
