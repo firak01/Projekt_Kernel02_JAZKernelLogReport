@@ -4,12 +4,12 @@ package basic.zBasic.util.log;
  * Die Sourcecodes, die diesem Buch als Beispiele beiliegen, sind
  * Copyright (c) 2006 - Thomas Ekert. Alle Rechte vorbehalten.
  * 
- * Trotz sorgfältiger Kontrolle sind Fehler in Softwareprodukten nie vollständig auszuschließen.
+ * Trotz sorgfï¿½ltiger Kontrolle sind Fehler in Softwareprodukten nie vollstï¿½ndig auszuschlieï¿½en.
  * Die Sourcodes werden in Ihrem Originalzustand ausgeliefert.
- * Ansprüche auf Anpassung, Weiterentwicklung, Fehlerbehebung, Support
+ * Ansprï¿½che auf Anpassung, Weiterentwicklung, Fehlerbehebung, Support
  * oder sonstige wie auch immer gearteten Leistungen oder Haftung sind ausgeschlossen.
- * Sie dürfen kommerziell genutzt, weiterverarbeitet oder weitervertrieben werden.
- * Voraussetzung hierfür ist, dass für jeden beteiligten Entwickler, jeweils mindestens
+ * Sie dï¿½rfen kommerziell genutzt, weiterverarbeitet oder weitervertrieben werden.
+ * Voraussetzung hierfï¿½r ist, dass fï¿½r jeden beteiligten Entwickler, jeweils mindestens
  * ein Exemplar dieses Buches in seiner aktuellen Version als gekauftes Exemplar vorliegt.
  */
 import java.io.*;
@@ -22,28 +22,28 @@ import basic.zBasic.ReflectCodeZZZ;
 import basic.zBasic.util.datatype.string.StringZZZ;
 import basic.zBasic.util.file.FileEasyZZZ;
 
-/** Ausgabe Klasse für Debug-Informationen
+/** Ausgabe Klasse fï¿½r Debug-Informationen
  * 
  * Kapselt einen Log4J Logger
- * Ausgabe Loglevel wird durch die Konstante DO_NOT_LOG_BEYOND_THIS beschränkt.
- * Log4J ist selbstkonfigurierend. Das zugehörige Config File wird (sofern 
+ * Ausgabe Loglevel wird durch die Konstante DO_NOT_LOG_BEYOND_THIS beschrï¿½nkt.
+ * Log4J ist selbstkonfigurierend. Das zugehï¿½rige Config File wird (sofern 
  * noch nicht vorhanden) in <i>user.dir</i>/java angelegt
  * und kann dort dann auch modifiziert werden.
  * Vorbereitet ist ein NotesLogAppender, der in eine Notes Datenbank logged.
  * Diesr muss im Config File aktiviert werden.
- * Stellt einige hilfreiche Ausgabe Methoden für z.B. Enumeration, Vector, Exception
+ * Stellt einige hilfreiche Ausgabe Methoden fï¿½r z.B. Enumeration, Vector, Exception
  * oder Document bereit
  * Falls getTraceStatus()==true, dann wird jeder ausgabe ein TracePfad vorangestellt,
- * so dass jeder Ausgabe die zugehörige Methode angesehen werden kann.
+ * so dass jeder Ausgabe die zugehï¿½rige Methode angesehen werden kann.
  * 
  * @author Thomas Ekert
  * 
  *
- * Erweitert um FGL-Kernel-Funktionalität
+ * Erweitert um FGL-Kernel-Funktionalitï¿½t
  * 20061021, Fritz Lindhauer
  *
- * Ursprünglicher Name DJLog.
- * Rausgenommene/geänderte Methoden:
+ * Ursprï¿½nglicher Name DJLog.
+ * Rausgenommene/geï¿½nderte Methoden:
  * -writeDocument - entfernt
  * -writeException  - NotesException-Teil entfernt
  * 
@@ -57,7 +57,7 @@ public class ReportLogZZZ implements IConstantZZZ, IReportLogConstantZZZ
 	private String basePath = null;
 	private String configFilename=null;
 	 
-	//FGL Erweiterungen / Änderungen
+	//FGL Erweiterungen / ï¿½nderungen
 	private KernelReportContextProviderZZZ objContext=null;
 	 
 	int currentLogLevel = ReportLogCommonZZZ.NOT_LOADED;
@@ -75,7 +75,7 @@ public class ReportLogZZZ implements IConstantZZZ, IReportLogConstantZZZ
 	
 	/**
 	 * @see write (int, String, boolean)
-	 * gibt einen Trace nur dann aus, wenn für die Klasse ein Trace zugelassen ist.
+	 * gibt einen Trace nur dann aus, wenn fï¿½r die Klasse ein Trace zugelassen ist.
 	 * @param logLevel
 	 * @param msg
 	 */
@@ -83,7 +83,7 @@ public class ReportLogZZZ implements IConstantZZZ, IReportLogConstantZZZ
 		write (logLevel, msg, !showTrace );
 	}
 	
-	/**Schreibt eine Stringnachricht ins Log, wenn das in der Konfiguration eingestellte Loglevel es zuläßt. 
+	/**Schreibt eine Stringnachricht ins Log, wenn das in der Konfiguration eingestellte Loglevel es zulï¿½ï¿½t. 
 	 * @param logLevel - Level auf dem gelogged werden soll
 	 * @param msg - Log Nachricht
 	 * @param kurz - falls kurz==true, wird kein Trace (Anzeige der aufrufenden Klasse)
@@ -126,7 +126,7 @@ public class ReportLogZZZ implements IConstantZZZ, IReportLogConstantZZZ
 
 	/**
  	 * Schreibt eine Stringnachricht ins Log, wenn das im Profildokument
-	 * eingestellte Loglevel es zuläßt. 
+	 * eingestellte Loglevel es zulï¿½ï¿½t. 
 	 * @see write (int, String)
 	 * @param logLevel
 	 * @param msg
@@ -137,8 +137,8 @@ public class ReportLogZZZ implements IConstantZZZ, IReportLogConstantZZZ
 	}
 
 	/**
-	 * Schreibt eine Schlüssel-Wert-Liste ins Log, wenn das im Profildokument
-	 * eingestellte Loglevel es zuläßt.
+	 * Schreibt eine Schlï¿½ssel-Wert-Liste ins Log, wenn das im Profildokument
+	 * eingestellte Loglevel es zulï¿½ï¿½t.
 	 * @param logLevel
 	 * @param keys
 	 * @param values
@@ -147,7 +147,7 @@ public class ReportLogZZZ implements IConstantZZZ, IReportLogConstantZZZ
 	{
 		StringWriter sw = new StringWriter();
 		PrintWriter ps = new PrintWriter(sw);
-		ps.println("" + keys.size() + " Schlüssel und " + values.size() + " Werte:");
+		ps.println("" + keys.size() + " Schlï¿½ssel und " + values.size() + " Werte:");
 		for (int i = 0; i < keys.size() || i < values.size(); i++) {
 			ps.print((i < keys.size())? keys.elementAt(i): "(null)");
 			ps.print("=");
@@ -158,7 +158,7 @@ public class ReportLogZZZ implements IConstantZZZ, IReportLogConstantZZZ
 
 	/**
  	 * Schreibt eine Exception mit StackTrace ins Log, wenn das im Profildokument
-	 * eingestellte Loglevel es zuläßt.
+	 * eingestellte Loglevel es zulï¿½ï¿½t.
 	 * @param logLevel
 	 * @param e
 	 */
@@ -199,7 +199,7 @@ public class ReportLogZZZ implements IConstantZZZ, IReportLogConstantZZZ
 
 	/**
 	 * Schreibt eine Exception mit Loglevel <code>ERROR</code> ins Log,
-	 * wenn das im Profildokument eingestellte Loglevel es zuläßt. 
+	 * wenn das im Profildokument eingestellte Loglevel es zulï¿½ï¿½t. 
 	 * @param e
 	 */
 	public static void writeException(Throwable e)
@@ -208,8 +208,8 @@ public class ReportLogZZZ implements IConstantZZZ, IReportLogConstantZZZ
 	}
 
 	/**
-	 * Schreibt eine Aufzählung ins Log, wenn das im Profildokument
-	 * eingestellte Loglevel es zuläßt.
+	 * Schreibt eine Aufzï¿½hlung ins Log, wenn das im Profildokument
+	 * eingestellte Loglevel es zulï¿½ï¿½t.
 	 * @param logLevel
 	 * @param e - auszugebende Enumeration
 	 */
@@ -248,7 +248,7 @@ public class ReportLogZZZ implements IConstantZZZ, IReportLogConstantZZZ
 	}
 	
 	/**
-	 * Ändert das Loglevel.
+	 * ï¿½ndert das Loglevel.
 	 * @param newLogLevel
 	 */
 	public static void setLogLevel(int newLogLevel) {
@@ -316,7 +316,7 @@ public class ReportLogZZZ implements IConstantZZZ, IReportLogConstantZZZ
 	
 	/**
 	 * Der basePath der Log Klasse ist per Default das Verzeichnis <<user.dir>>/java
-	 * Es kann mit setBasePath verändert werden.
+	 * Es kann mit setBasePath verï¿½ndert werden.
 	 * In diesem Pfad werden logs und die log4j.conf gespeichert.
 	 * @param path
 	 */
@@ -333,15 +333,15 @@ public class ReportLogZZZ implements IConstantZZZ, IReportLogConstantZZZ
 	
 	
 	private ReportLogZZZ () {
-		//FGL: Es muss der Methodenaufruf "loadKernelContext(..)" ausgeführt werden.		
+		//FGL: Es muss der Methodenaufruf "loadKernelContext(..)" ausgefï¿½hrt werden.		
 	}
 	
 	
 	//####################################################
-	//### FGL Erweiterungen / Änderungen
+	//### FGL Erweiterungen / ï¿½nderungen
 	/** Liest das Konfigurierte LogLeEvel aus der Konfigurationsdatei aus.
 	 *   Transformiert den konfigurierten String in einen integer-wert, 
-	 *   wie er dann in .setLogLevel(int) übergeben werden kann.
+	 *   wie er dann in .setLogLevel(int) ï¿½bergeben werden kann.
 	* @return int
 	* 
 	* lindhaueradmin; 22.10.2006 17:23:35
@@ -387,7 +387,7 @@ public class ReportLogZZZ implements IConstantZZZ, IReportLogConstantZZZ
 		return iReturn;
 	}
 	
-	/** FGL Erweiterung/Änderung: Lies den Namen des verwendeten Logs aus der Kernel-ProgramKonfiguration aus.
+	/** FGL Erweiterung/ï¿½nderung: Lies den Namen des verwendeten Logs aus der Kernel-ProgramKonfiguration aus.
 	 * Merke: Dieser Name wird zur statischen Erzeugung der log4j Logger-Objekts verwendet.
 	* @return String
 	* 
@@ -407,7 +407,7 @@ public class ReportLogZZZ implements IConstantZZZ, IReportLogConstantZZZ
 	}
 	
 	
-	/** FGL Änderung/Erweiterung: Neben dem Setzen des KernelContext-Objekts in das Singleton,
+	/** FGL ï¿½nderung/Erweiterung: Neben dem Setzen des KernelContext-Objekts in das Singleton,
 	 * werden auch die grundlegenden Informationen aus der Kernel-Config-Ini-Datei ausgelesen und gesetzt.
 	* @return boolean
 	* @param objContext
@@ -427,16 +427,21 @@ public class ReportLogZZZ implements IConstantZZZ, IReportLogConstantZZZ
 			singleton.currentLogLevel = itemp;
 			
 			stemp = ReportLogZZZ.readLog4jPathConfig();
-			if(StringZZZ.isEmpty(stemp)){
-				
-				//Eclipse Worspace
-				File f = new File("");
-			    String sPathEclipse = f.getAbsolutePath();
-			    System.out.println("Empty path for Log4JConfig. Using workspace absolut path: " + sPathEclipse);
-				singleton.basePath = sPathEclipse + "\\";
-			}else{
-				singleton.basePath = stemp + "\\";
-			}
+			
+			File objDirectory = FileEasyZZZ.searchDirectory(stemp);
+			String sDirectory = objDirectory.getAbsolutePath();
+			singleton.basePath= sDirectory + File.separator;
+			
+//			if(StringZZZ.isEmpty(stemp)){
+//				
+//				//Eclipse Worspace
+//				File f = new File("");
+//			    String sPathEclipse = f.getAbsolutePath();
+//			    System.out.println("Empty path for Log4JConfig. Using workspace absolut path: " + sPathEclipse);
+//				singleton.basePath = sPathEclipse + "\\";
+//			}else{
+//				singleton.basePath = stemp + "\\";
+//			}
 			
 			stemp = ReportLogZZZ.readLog4jFileConfig();
 			singleton.configFilename = stemp;

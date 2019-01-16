@@ -4,6 +4,7 @@
 package basic.zBasic.util.log;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -15,7 +16,7 @@ import basic.zBasic.util.datatype.string.StringZZZ;
 import basic.zBasic.util.file.FileEasyZZZ;
 
 /** Diese Klasse soll falls notwendig ein Datei erzeugen, die von log4j als Konfigurationsdatei verwendet werden kann.
- * Die Details für Konfigurationswerte werden vom KernelContextProvider übergeben.
+ * Die Details fÃ¼r Konfigurationswerte werden vom KernelContextProvider ï¿½bergeben.
  * @author 0823
  *
  */
@@ -53,20 +54,26 @@ public class Log4jPropertyGeneratorZZZ implements IConstantZZZ{
 			try{ 					
 			//Erstelle ggf. das Verzeichnis
 			String sDir = objContext.getLog4jPathConfig();
-			if(StringZZZ.isEmpty(sDir)){
-				sDir = ".";
-			}else{
-				FileEasyZZZ.makeDirectory(sDir);
-			}
+			File objDirectory = FileEasyZZZ.searchDirectory(sDir);
+			String sDirectoryPathNormed = objDirectory.getAbsolutePath();
+			System.out.println(ReflectCodeZZZ.getPositionCurrent()+": Errechneter Pfad fÃ¼r das KernelLog='" + sDirectoryPathNormed +"'");
+
+//			if(StringZZZ.isEmpty(sDir)){
+//				sDir = ".";
+//			}else{
+//				FileEasyZZZ.makeDirectory(sDir);
+//			}
+			
+			FileEasyZZZ.makeDirectory(sDirectoryPathNormed);
 		
 						
-			//Filewriter für die Datei
+			//Filewriter fÃ¼r die Datei
 			String sFile = objContext.getLog4jFileConfig();
 			if(StringZZZ.isEmpty(sFile)){
 				ExceptionZZZ ez = new ExceptionZZZ("Log4jFile not configured as a property in the configuration.", iERROR_CONFIGURATION_MISSING, null, ReflectCodeZZZ.getMethodCurrentName());
 				throw ez;
 			}
-			FileWriter fw = new FileWriter(sDir + "\\" + sFile);
+			FileWriter fw = new FileWriter(sDirectoryPathNormed + File.separator + sFile);
 			
 			
 			//+++ Den zu schreibenden Inhalt
@@ -79,13 +86,17 @@ public class Log4jPropertyGeneratorZZZ implements IConstantZZZ{
 				//ExceptionZZZ ez = new ExceptionZZZ("Log4jPatternFile not configured as a property in the configuration.", iERROR_CONFIGURATION_MISSING, null, ReflectionZZZ.getMethodCurrentName());
 				//throw ez;
 				
-				sDirPattern = objContext.getLog4jPathPattern();		
-				if(StringZZZ.isEmpty(sDirPattern)){
-					sDirPattern = ".";
-				}
+				sDirPattern = objContext.getLog4jPathPattern();	
+				File objDirecoryPattern = FileEasyZZZ.searchDirectory(sDirPattern);
+				String sDirectoryPathPatternNormed = objDirecoryPattern.getAbsolutePath();
+				System.out.println(ReflectCodeZZZ.getPositionCurrent()+": Errechneter Pfad fÃ¼r das Log4jPattern Verzeichnis='" + sDirectoryPathPatternNormed +"'");
+
+//				if(StringZZZ.isEmpty(sDirPattern)){
+//					sDirPattern = ".";
+//				}
 				
 				
-				String stemp = new String(sDirPattern + "\\" + sFilePattern);
+				String stemp = new String(sDirectoryPathPatternNormed + File.separator + sFilePattern);
 				FileReader objFR = new FileReader(stemp);
 				BufferedReader objBFR= new BufferedReader(objFR);
 				
@@ -94,7 +105,7 @@ public class Log4jPropertyGeneratorZZZ implements IConstantZZZ{
 				if(sLine!=null) sContentPattern = sLine;
 				sLine = objBFR.readLine();
 				while(sLine!=null){
-					//Zeile anhängen
+					//Zeile anhï¿½ngen
 					sContentPattern = sContentPattern + "\n" + sLine;
 					sLine = objBFR.readLine();
 				}
@@ -132,7 +143,7 @@ public class Log4jPropertyGeneratorZZZ implements IConstantZZZ{
 	public static boolean removeFile(KernelReportContextProviderZZZ objContext, boolean bRemoveDirectoryEmpty) throws ExceptionZZZ{
 		boolean bReturn = false;
 		main:{
-//				Löschen der Datei
+//				LÃ¶schen der Datei
 				String sFile = objContext.getLog4jFileConfig();
 				if(StringZZZ.isEmpty(sFile)) break main;
 				
@@ -140,14 +151,14 @@ public class Log4jPropertyGeneratorZZZ implements IConstantZZZ{
 				if(StringZZZ.isEmpty(sDir)){
 					bReturn = FileEasyZZZ.removeFile(sFile);
 				}else{
-					bReturn = FileEasyZZZ.removeFile(sDir + "\\" + sFile);
+					bReturn = FileEasyZZZ.removeFile(sDir + File.separator + sFile);
 				}				
 				if(bRemoveDirectoryEmpty==false) break main;
 				if(bReturn == false) break main;
 				
-				//### Lösche ggf. das Verzeichnis
-				if(sDir.equals(".")) break main;
-				
+				//### LÃ¶sche ggf. das Verzeichnis
+				if(sDir.equals(".")||sDir.isEmpty()) break main;
+								
 				boolean btemp = FileEasyZZZ.exists(sDir);
 				if(btemp==true){
 						btemp = FileEasyZZZ.isDirectoryEmpty(sDir);
@@ -159,20 +170,20 @@ public class Log4jPropertyGeneratorZZZ implements IConstantZZZ{
 		return bReturn;
 	}
 	
-	/**Default Konfiguration für log4j .
-     * Alternativ ist eine Konfiguration über ein Pattern-File möglich.
+	/**Default Konfiguration fï¿½r log4j .
+     * Alternativ ist eine Konfiguration ï¿½ber ein Pattern-File mï¿½glich.
 	 * @return String
 	 *
 	 * javadoc created by: 0823, 06.11.2006 - 13:53:29
 	 */
 	public static String getDefaultConfigPatternString(){
 		String sReturn = "#\n"
-			 + "# Automatisch durch Log4jPropertyGeneratorZZZ aus Log4jPropertyGeneratorZZZ.defaultProperies generiertes property file für log4j.\n"
-			 + "# Alternativ ist eine Konfiguration über ein Pattern-File möglich.\n"
-			 + "# Merke: In den 'Pattern' für die Konfiguration sind immer Platzhalter mit @@xyz@@ vorgesehen,\n"
-			 + "#             die Werte für diese Platzhalter werden in der (private) Methode .replacePlaceHolderAll(..) der Log4jPropertyGenaratorZZZ - Klasse ersetzt.\n"
+			 + "# Automatisch durch Log4jPropertyGeneratorZZZ aus Log4jPropertyGeneratorZZZ.defaultProperies generiertes property file fï¿½r log4j.\n"
+			 + "# Alternativ ist eine Konfiguration ï¿½ber ein Pattern-File mï¿½glich.\n"
+			 + "# Merke: In den 'Pattern' fï¿½r die Konfiguration sind immer Platzhalter mit @@xyz@@ vorgesehen,\n"
+			 + "#             die Werte fï¿½r diese Platzhalter werden in der (private) Methode .replacePlaceHolderAll(..) der Log4jPropertyGenaratorZZZ - Klasse ersetzt.\n"
 			 + "#\n"		 
-			 + "\n Merke: Bei Verwendung anderer Appender, sind diese ergänzend hinter STDOUTLOGGER oder alternativ dazu zu konfigurieren.\n"
+			 + "\n Merke: Bei Verwendung anderer Appender, sind diese ergï¿½nzend hinter STDOUTLOGGER oder alternativ dazu zu konfigurieren.\n"
 			 + "log4j.rootLogger=@@LEVEL@@, STDOUTLOGGER\n"
 			 + "\n"
 			 + "#################################################################\n"
