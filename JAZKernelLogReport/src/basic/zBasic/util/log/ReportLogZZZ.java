@@ -420,6 +420,7 @@ public class ReportLogZZZ implements IConstantZZZ, IReportLogConstantZZZ
 		main:{
 			ReportLogZZZ.setKernelContext(objContext);
 			
+			//1. Verzeichnis.
 			String stemp  = ReportLogZZZ.readLogName();
 			singleton.logger = Logger.getLogger(stemp);
 			
@@ -428,21 +429,11 @@ public class ReportLogZZZ implements IConstantZZZ, IReportLogConstantZZZ
 			
 			stemp = ReportLogZZZ.readLog4jPathConfig();
 			
-			File objDirectory = FileEasyZZZ.searchDirectory(stemp);
+			File objDirectory = FileEasyZZZ.searchDirectory(stemp);//Suche Verzeichnis, egal ob relativer Pfad und auf WebServer oder in Eclipse Workspace.
 			String sDirectory = objDirectory.getAbsolutePath();
 			singleton.basePath= sDirectory + File.separator;
 			
-//			if(StringZZZ.isEmpty(stemp)){
-//				
-//				//Eclipse Worspace
-//				File f = new File("");
-//			    String sPathEclipse = f.getAbsolutePath();
-//			    System.out.println("Empty path for Log4JConfig. Using workspace absolut path: " + sPathEclipse);
-//				singleton.basePath = sPathEclipse + "\\";
-//			}else{
-//				singleton.basePath = stemp + "\\";
-//			}
-			
+			//2. Dateiname
 			stemp = ReportLogZZZ.readLog4jFileConfig();
 			singleton.configFilename = stemp;
 			

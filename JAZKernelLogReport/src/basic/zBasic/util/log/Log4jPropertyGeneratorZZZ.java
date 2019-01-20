@@ -41,7 +41,7 @@ public class Log4jPropertyGeneratorZZZ implements IConstantZZZ{
 		return sReturn;
 	}
 	
-	/**Erstellt ein log3j Konfigurationsfile, entweder basierend auf einem konfigurierten PatternFile oder auf den default-String.
+	/**Erstellt ein log4j Konfigurationsfile, entweder basierend auf einem konfigurierten PatternFile oder auf den default-String.
 	* @return boolean
 	* @param objContext
 	* @throws ExceptionZZZ 
@@ -53,20 +53,10 @@ public class Log4jPropertyGeneratorZZZ implements IConstantZZZ{
 		main:{
 			try{ 					
 			//Erstelle ggf. das Verzeichnis
-			String sDir = objContext.getLog4jPathConfig();
-			File objDirectory = FileEasyZZZ.searchDirectory(sDir);
-			String sDirectoryPathNormed = objDirectory.getAbsolutePath();
-			System.out.println(ReflectCodeZZZ.getPositionCurrent()+": Errechneter Pfad für das KernelLog='" + sDirectoryPathNormed +"'");
-
-//			if(StringZZZ.isEmpty(sDir)){
-//				sDir = ".";
-//			}else{
-//				FileEasyZZZ.makeDirectory(sDir);
-//			}
+			String sDirectory = objContext.getLog4jPathConfig();		
+			File objDirectoryCreated = FileEasyZZZ.searchMakeDirectory(sDirectory);
+			String sDirectoryPathNormed = objDirectoryCreated.getAbsolutePath();
 			
-			FileEasyZZZ.makeDirectory(sDirectoryPathNormed);
-		
-						
 			//Filewriter für die Datei
 			String sFile = objContext.getLog4jFileConfig();
 			if(StringZZZ.isEmpty(sFile)){
@@ -149,9 +139,11 @@ public class Log4jPropertyGeneratorZZZ implements IConstantZZZ{
 				
 				String sDir = objContext.getLog4jPathConfig();
 				if(StringZZZ.isEmpty(sDir)){
-					bReturn = FileEasyZZZ.removeFile(sFile);
+					//bReturn = FileEasyZZZ.removeFile(sFile);
+					bReturn = FileEasyZZZ.searchRemoveFile(sFile); //Dadurch soll die Datei z.B. auch auf einem WebServer (ohne src-Verzeichnis) entfernt werden.
 				}else{
-					bReturn = FileEasyZZZ.removeFile(sDir + File.separator + sFile);
+					//bReturn = FileEasyZZZ.removeFile(sDir + File.separator + sFile);
+					bReturn = FileEasyZZZ.searchRemoveFile(sDir + File.separator + sFile);//Dadurch soll die Datei z.B. auch auf einem WebServer (ohne src-Verzeichnis) entfernt werden.
 				}				
 				if(bRemoveDirectoryEmpty==false) break main;
 				if(bReturn == false) break main;
@@ -159,11 +151,14 @@ public class Log4jPropertyGeneratorZZZ implements IConstantZZZ{
 				//### Lösche ggf. das Verzeichnis
 				if(sDir.equals(".")||sDir.isEmpty()) break main;
 								
-				boolean btemp = FileEasyZZZ.exists(sDir);
+				//boolean btemp = FileEasyZZZ.exists(sDir);
+				boolean btemp = FileEasyZZZ.searchExists(sDir);//Dadurch soll die Datei z.B. auch auf einem WebServer (ohne src-Verzeichnis) entfernt werden.
 				if(btemp==true){
-						btemp = FileEasyZZZ.isDirectoryEmpty(sDir);
+						//btemp = FileEasyZZZ.isDirectoryEmpty(sDir);
+					btemp = FileEasyZZZ.searchIsDirectoryEmpty(sDir);
 						if(btemp == true){
-							btemp = FileEasyZZZ.removeDirectory(sDir);						
+							//btemp = FileEasyZZZ.removeDirectory(sDir);						
+							btemp = FileEasyZZZ.searchRemoveDirectory(sDir);
 						}
 					}
 		}//END main:
