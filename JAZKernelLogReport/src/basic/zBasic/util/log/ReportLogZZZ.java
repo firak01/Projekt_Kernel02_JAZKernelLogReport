@@ -31,15 +31,15 @@ import basic.zBasic.util.file.FileEasyZZZ;
  * und kann dort dann auch modifiziert werden.
  * Vorbereitet ist ein NotesLogAppender, der in eine Notes Datenbank logged.
  * Diesr muss im Config File aktiviert werden.
- * Stellt einige hilfreiche Ausgabe Methoden f�r z.B. Enumeration, Vector, Exception
+ * Stellt einige hilfreiche Ausgabe Methoden für z.B. Enumeration, Vector, Exception
  * oder Document bereit
  * Falls getTraceStatus()==true, dann wird jeder ausgabe ein TracePfad vorangestellt,
- * so dass jeder Ausgabe die zugeh�rige Methode angesehen werden kann.
+ * so dass jeder Ausgabe die zugehörige Methode angesehen werden kann.
  * 
  * @author Thomas Ekert
  * 
  *
- * Erweitert um FGL-Kernel-Funktionalit�t
+ * Erweitert um FGL-Kernel-Funktionalitä�t
  * 20061021, Fritz Lindhauer
  *
  * Urspr�nglicher Name DJLog.
@@ -57,7 +57,7 @@ public class ReportLogZZZ implements IConstantZZZ, IReportLogConstantZZZ
 	private String basePath = null;
 	private String configFilename=null;
 	 
-	//FGL Erweiterungen / �nderungen
+	//FGL Erweiterungen / Änderungen
 	private KernelReportContextProviderZZZ objContext=null;
 	 
 	int currentLogLevel = ReportLogCommonZZZ.NOT_LOADED;
@@ -126,7 +126,7 @@ public class ReportLogZZZ implements IConstantZZZ, IReportLogConstantZZZ
 
 	/**
  	 * Schreibt eine Stringnachricht ins Log, wenn das im Profildokument
-	 * eingestellte Loglevel es zul��t. 
+	 * eingestellte Loglevel es zuläßt. 
 	 * @see write (int, String)
 	 * @param logLevel
 	 * @param msg
@@ -158,7 +158,7 @@ public class ReportLogZZZ implements IConstantZZZ, IReportLogConstantZZZ
 
 	/**
  	 * Schreibt eine Exception mit StackTrace ins Log, wenn das im Profildokument
-	 * eingestellte Loglevel es zul��t.
+	 * eingestellte Loglevel es zuläßt.
 	 * @param logLevel
 	 * @param e
 	 */
@@ -248,7 +248,7 @@ public class ReportLogZZZ implements IConstantZZZ, IReportLogConstantZZZ
 	}
 	
 	/**
-	 * �ndert das Loglevel.
+	 * ändert das Loglevel.
 	 * @param newLogLevel
 	 */
 	public static void setLogLevel(int newLogLevel) {
