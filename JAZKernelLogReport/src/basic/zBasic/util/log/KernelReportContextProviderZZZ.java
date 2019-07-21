@@ -76,9 +76,9 @@ public class KernelReportContextProviderZZZ extends KernelUseObjectZZZ {
 		if(StringZZZ.isEmpty(this.sLog4jLevel)){
 			//Damit ist es das gleiche wie log4jLevel, das muss aber nicht sein
 			if(StringZZZ.isEmpty(this.getClassCalling())){
-				this.sLogLevel = objKernel.getParameterByModuleAlias(this.getModuleCalling(), "Log4jLevel");
+				this.sLogLevel = objKernel.getParameterByModuleAlias(this.getModuleCalling(), "Log4jLevel").getValue();
 			}else{
-				this.sLogLevel = objKernel.getParameterByProgramAlias(this.getModuleCalling(), this.getClassCalling(), "Log4jLevel");
+				this.sLogLevel = objKernel.getParameterByProgramAlias(this.getModuleCalling(), this.getClassCalling(), "Log4jLevel").getValue();
 			}
 		}
 		return this.sLogLevel;
@@ -88,9 +88,9 @@ public class KernelReportContextProviderZZZ extends KernelUseObjectZZZ {
 	public String getLog4jLevel() throws ExceptionZZZ{
 		if(StringZZZ.isEmpty(this.sLog4jLevel)){
 			if(StringZZZ.isEmpty(this.getClassCalling())){
-				this.sLog4jLevel = objKernel.getParameterByModuleAlias(this.getModuleCalling(), "Log4jLevel");
+				this.sLog4jLevel = objKernel.getParameterByModuleAlias(this.getModuleCalling(), "Log4jLevel").getValue();
 			}else{
-				this.sLog4jLevel = objKernel.getParameterByProgramAlias(this.getModuleCalling(), this.getClassCalling(), "Log4jLevel");
+				this.sLog4jLevel = objKernel.getParameterByProgramAlias(this.getModuleCalling(), this.getClassCalling(), "Log4jLevel").getValue();
 			}
 		}
 		return this.sLog4jLevel;
@@ -99,9 +99,9 @@ public class KernelReportContextProviderZZZ extends KernelUseObjectZZZ {
 	public String getLog4jName() throws ExceptionZZZ{
 		if(StringZZZ.isEmpty(this.sLog4jName)){
 			if(StringZZZ.isEmpty(this.getClassCalling())){
-				this.sLog4jName = objKernel.getParameterByModuleAlias(this.getModuleCalling(), "Log4jName");
+				this.sLog4jName = objKernel.getParameterByModuleAlias(this.getModuleCalling(), "Log4jName").getValue();
 			}else{
-				this.sLog4jName = objKernel.getParameterByProgramAlias(this.getModuleCalling(), this.getClassCalling(), "Log4jName");
+				this.sLog4jName = objKernel.getParameterByProgramAlias(this.getModuleCalling(), this.getClassCalling(), "Log4jName").getValue();
 			}
 		}
 		return this.sLog4jName;
@@ -110,9 +110,9 @@ public class KernelReportContextProviderZZZ extends KernelUseObjectZZZ {
 	public String getLog4jPathConfig() throws ExceptionZZZ {
 		if(StringZZZ.isEmpty(this.sLog4jPathConfig)){
 			if(StringZZZ.isEmpty(this.getClassCalling())){
-				this.sLog4jPathConfig = objKernel.getParameterByModuleAlias(this.getModuleCalling(), "Log4jPathConfig" );
+				this.sLog4jPathConfig = objKernel.getParameterByModuleAlias(this.getModuleCalling(), "Log4jPathConfig" ).getValue();
 			}else{
-				this.sLog4jPathConfig = objKernel.getParameterByProgramAlias(this.getModuleCalling(), this.getClassCalling(), "Log4jPathConfig" );
+				this.sLog4jPathConfig = objKernel.getParameterByProgramAlias(this.getModuleCalling(), this.getClassCalling(), "Log4jPathConfig" ).getValue();
 			}
 		}
 		return this.sLog4jPathConfig;
@@ -121,9 +121,9 @@ public class KernelReportContextProviderZZZ extends KernelUseObjectZZZ {
 	public String getLog4jFileConfig() throws ExceptionZZZ {
 		if(StringZZZ.isEmpty(this.sLog4jFileConfig)){
 			if(StringZZZ.isEmpty(this.getClassCalling())){
-				this.sLog4jFileConfig = objKernel.getParameterByModuleAlias(this.getModuleCalling(), "Log4jFileConfig" );
+				this.sLog4jFileConfig = objKernel.getParameterByModuleAlias(this.getModuleCalling(), "Log4jFileConfig" ).getValue();
 			}else{
-				this.sLog4jFileConfig = objKernel.getParameterByProgramAlias(this.getModuleCalling(), this.getClassCalling(), "Log4jFileConfig" );
+				this.sLog4jFileConfig = objKernel.getParameterByProgramAlias(this.getModuleCalling(), this.getClassCalling(), "Log4jFileConfig" ).getValue();
 			}
 		}
 		return this.sLog4jFileConfig;
@@ -132,9 +132,9 @@ public class KernelReportContextProviderZZZ extends KernelUseObjectZZZ {
 	public String getLog4jPathPattern() throws ExceptionZZZ{
 		if(StringZZZ.isEmpty(this.sLog4jPatternPath)){
 			if(StringZZZ.isEmpty(this.getClassCalling())){
-				this.sLog4jPatternPath = objKernel.getParameterByModuleAlias(this.getModuleCalling(), "Log4jPathPattern" );
+				this.sLog4jPatternPath = objKernel.getParameterByModuleAlias(this.getModuleCalling(), "Log4jPathPattern" ).getValue();
 			}else{
-				this.sLog4jPatternPath = objKernel.getParameterByProgramAlias(this.getModuleCalling(), this.getClassCalling(), "Log4jPathPattern");
+				this.sLog4jPatternPath = objKernel.getParameterByProgramAlias(this.getModuleCalling(), this.getClassCalling(), "Log4jPathPattern").getValue();
 			}
 		}
 		return this.sLog4jPatternPath;
@@ -143,9 +143,9 @@ public class KernelReportContextProviderZZZ extends KernelUseObjectZZZ {
 	public String getLog4jFilePattern() throws ExceptionZZZ {
 		if(StringZZZ.isEmpty(this.sLog4jPatternFile)){
 			if(StringZZZ.isEmpty(this.getClassCalling())){
-				this.sLog4jPatternFile = objKernel.getParameterByModuleAlias(this.getModuleCalling(), "Log4jFilePattern" );
+				this.sLog4jPatternFile = objKernel.getParameterByModuleAlias(this.getModuleCalling(), "Log4jFilePattern" ).getValue();
 			}else{
-				this.sLog4jPatternFile = objKernel.getParameterByProgramAlias(this.getModuleCalling(), this.getClassCalling(), "Log4jFilePattern" );
+				this.sLog4jPatternFile = objKernel.getParameterByProgramAlias(this.getModuleCalling(), this.getClassCalling(), "Log4jFilePattern" ).getValue();
 			}
 		}
 		return this.sLog4jPatternFile;
