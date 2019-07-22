@@ -9,10 +9,10 @@ import basic.zKernel.KernelZZZ;
 
 /** Diese Klasse dient dazu andere Objekte (hier das ReportLog-Objekt)  mit Kernel-Informationen zu versorgen.
  * Damit die ReportLog - Klasse auch in anderen Projekten eingesetzt werden kann (ohne Kernel-Objekt)
- * und sehr einfach zu handhaben ist, sind die wesentlichen Methoden n�mlich static 
+ * und sehr einfach zu handhaben ist, sind die wesentlichen Methoden static 
  * und es gibt keinen public Konstruktor.
  * 
- * Aus dem KernelContextProvider-Objekt k�nnen dann Einstellungen gezogen werden, die die DEFAULT Einstellungen �berschreiben.
+ * Aus dem KernelContextProvider-Objekt können dann Einstellungen gezogen werden, die die DEFAULT Einstellungen überschreiben.
  * @author lindhaueradmin
  *
  */
