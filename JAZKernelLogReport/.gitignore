@@ -1,2 +1,5 @@
 /bin/
 /ZKernelLog_default.txt
+
+#Vom Projekt während der Ausführung generierte Dateien ausschliessen.
+/src/log4j.conf
