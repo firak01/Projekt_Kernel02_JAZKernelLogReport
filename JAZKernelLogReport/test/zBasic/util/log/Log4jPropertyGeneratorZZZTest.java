@@ -17,7 +17,7 @@ import basic.zKernel.KernelZZZ;
 public class Log4jPropertyGeneratorZZZTest extends TestCase {
 	// +++ Test setup
 	private static boolean doCleanup = true; // default = true false -> kein
-												// Aufr�umen um tearDown().
+												// Aufräumen um tearDown().
 
 	// Kernel und Log-Objekt
 	private KernelZZZ objKernel = null;
@@ -31,7 +31,7 @@ public class Log4jPropertyGeneratorZZZTest extends TestCase {
 		try {
 			// Kernel + Log - Object dem TestFixture hinzuf�gen. Siehe
 			// test.zzzKernel.KernelZZZTest
-			objKernel = new KernelZZZ("TEST", "01", "",
+			objKernel = new KernelZZZ("TEST", "01", "test",
 					"ZKernelConfigReportLog_test.ini", (String) null);
 
 			// Weil die ReportLogZZZ-Klasse keinen Konstruktor hat, wird ein

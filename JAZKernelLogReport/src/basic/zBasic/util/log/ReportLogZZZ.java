@@ -333,15 +333,15 @@ public class ReportLogZZZ implements IConstantZZZ, IReportLogConstantZZZ
 	
 	
 	private ReportLogZZZ () {
-		//FGL: Es muss der Methodenaufruf "loadKernelContext(..)" ausgef�hrt werden.		
+		//FGL: Es muss der Methodenaufruf "loadKernelContext(..)" ausgeführt werden.		
 	}
 	
 	
 	//####################################################
-	//### FGL Erweiterungen / �nderungen
+	//### FGL Erweiterungen / Änderungen
 	/** Liest das Konfigurierte LogLeEvel aus der Konfigurationsdatei aus.
 	 *   Transformiert den konfigurierten String in einen integer-wert, 
-	 *   wie er dann in .setLogLevel(int) �bergeben werden kann.
+	 *   wie er dann in .setLogLevel(int) übergeben werden kann.
 	* @return int
 	* 
 	* lindhaueradmin; 22.10.2006 17:23:35
@@ -407,7 +407,7 @@ public class ReportLogZZZ implements IConstantZZZ, IReportLogConstantZZZ
 	}
 	
 	
-	/** FGL �nderung/Erweiterung: Neben dem Setzen des KernelContext-Objekts in das Singleton,
+	/** FGL Änderung/Erweiterung: Neben dem Setzen des KernelContext-Objekts in das Singleton,
 	 * werden auch die grundlegenden Informationen aus der Kernel-Config-Ini-Datei ausgelesen und gesetzt.
 	* @return boolean
 	* @param objContext

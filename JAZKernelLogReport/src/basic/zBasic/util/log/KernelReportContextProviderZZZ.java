@@ -21,8 +21,8 @@ public class KernelReportContextProviderZZZ extends KernelUseObjectZZZ {
 	private String sClassCallingOrAlias=null; //Die Klasse, von der aus diese Klasse initialisiert wird.
 	private String sLogLevel=null;     //Der LogLevel wie er von ReportLogZZZ genutzt wird.
 	
-	private String sLog4jLevel=null;  //Der loglevel, wie er f�r log4j in der konfigurationsdatei hinterlegt ist
-	private String sLog4jName=null; //Der logname, wie er f�r log4j in der konfigurationsdatei hinterlegt ist
+	private String sLog4jLevel=null;  //Der loglevel, wie er für log4j in der Konfigurationsdatei hinterlegt ist
+	private String sLog4jName=null; //Der logname, wie er für log4j in der Konfigurationsdatei hinterlegt ist
 	private String sLog4jFileConfig=null; //Der filename der properties-datei, die von log4j als Konfiguration erwartet wird.
 	private String sLog4jPathConfig=null; //Der pfad zur datei, die von log4j als Konfiguration erwartet wird.
 	private String sLog4jPatternPath=null; //F�r eine datei, die ein Muster der log4j configuration datei enth�lt
@@ -52,14 +52,17 @@ public class KernelReportContextProviderZZZ extends KernelUseObjectZZZ {
 	
 	public String getClassCalling(){
 		/* FGL 20070111 Wenn wir von der M�glichkeit ausgehen, dass der Programm-Name fehlen darf, dann darf in diesem Fall nicht standardm��ig der ReportLogZZZ-Klassenname daf�r verwendet werden.
+		 * 
+		 */
+		//FGL 20190828: Dies aber wieder einkommentiert. Damit kann dann ein Alias für eine Section definiert werden.
 		if(StringZZZ.isEmpty(this.sClassCallingOrAlias)){
 			this.sClassCallingOrAlias = ReportLogZZZ.class.getName();
-		}*/
+		}
 		return this.sClassCallingOrAlias;
 	}
 	public String getModuleCalling(){
-		//Merke: �ber den Modulnamen kann der Kernel die konfigurierte ini-Datei finden.
-		//            In der Ini-Datei kann dann unter dem Programmnamen (eine Section) der gew�nschte Parameter ausgelesen werden.
+		//Merke: Über den Modulnamen kann der Kernel die konfigurierte ini-Datei finden.
+		//            In der Ini-Datei kann dann unter dem Programmnamen (eine Section) der gewünschte Parameter ausgelesen werden.
 		if(StringZZZ.isEmpty(this.sModuleCalling)){
 			this.sModuleCalling = ReportLogZZZ.class.getName();
 		}
