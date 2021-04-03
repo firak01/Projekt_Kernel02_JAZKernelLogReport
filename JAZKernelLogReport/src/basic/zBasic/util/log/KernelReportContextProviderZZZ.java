@@ -31,11 +31,12 @@ public class KernelReportContextProviderZZZ extends KernelUseObjectZZZ {
 	/** Verwende diesen Konstruktor, wenn die Informationen in einem Modul liegen, dass f�r diese Klasse selbst erstellt wurde. Also: Modulename = ReportLogZZZ.class.getName().
 	* lindhaueradmin; 12.01.2007 09:22:59
 	 * @param objKernel
+	 * @throws ExceptionZZZ 
 	 */
-	public KernelReportContextProviderZZZ(IKernelZZZ objKernel){
+	public KernelReportContextProviderZZZ(IKernelZZZ objKernel) throws ExceptionZZZ{
 		super(objKernel);
 	}
-	public KernelReportContextProviderZZZ(IKernelZZZ objKernel, String sModuleCalling, String sClassCallingOrAlias){
+	public KernelReportContextProviderZZZ(IKernelZZZ objKernel, String sModuleCalling, String sClassCallingOrAlias) throws ExceptionZZZ{
 		super(objKernel);
 		this.sModuleCalling = sModuleCalling;
 		this.sClassCallingOrAlias=sClassCallingOrAlias;
@@ -44,8 +45,9 @@ public class KernelReportContextProviderZZZ extends KernelUseObjectZZZ {
 	* lindhaueradmin; 12.01.2007 09:01:01
 	 * @param objKernel
 	 * @param sModuleCalling
+	 * @throws ExceptionZZZ 
 	 */
-	public KernelReportContextProviderZZZ(IKernelZZZ objKernel, String sModuleCalling){
+	public KernelReportContextProviderZZZ(IKernelZZZ objKernel, String sModuleCalling) throws ExceptionZZZ{
 		super(objKernel);
 		this.sModuleCalling = sModuleCalling;
 	}
