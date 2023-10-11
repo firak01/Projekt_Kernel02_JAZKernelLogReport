@@ -4,7 +4,7 @@ import basic.zBasic.ExceptionZZZ;
 import basic.zBasic.ReflectCodeZZZ;
 import basic.zBasic.util.datatype.string.StringZZZ;
 import basic.zKernel.IKernelZZZ;
-import basic.zKernel.KernelUseObjectZZZ;
+import basic.zKernel.AbstractKernelUseObjectZZZ;
 import basic.zKernel.KernelZZZ;
 
 /** Diese Klasse dient dazu andere Objekte (hier das ReportLog-Objekt)  mit Kernel-Informationen zu versorgen.
@@ -16,7 +16,7 @@ import basic.zKernel.KernelZZZ;
  * @author lindhaueradmin
  *
  */
-public class KernelReportContextProviderZZZ extends KernelUseObjectZZZ {
+public class KernelReportContextProviderZZZ extends AbstractKernelUseObjectZZZ {
 	private String sModuleCalling=null;       //Das Modul, von der aus diese Klasse initialisiert wird. 
 	private String sClassCallingOrAlias=null; //Die Klasse, von der aus diese Klasse initialisiert wird.
 	private String sLogLevel=null;     //Der LogLevel wie er von ReportLogZZZ genutzt wird.
