@@ -22,7 +22,7 @@ import basic.zBasic.ReflectCodeZZZ;
 import basic.zBasic.util.datatype.string.StringZZZ;
 import basic.zBasic.util.file.FileEasyZZZ;
 
-/** Ausgabe Klasse f�r Debug-Informationen
+/** Ausgabe Klasse fuer Debug-Informationen
  * 
  * Kapselt einen Log4J Logger
  * Ausgabe Loglevel wird durch die Konstante DO_NOT_LOG_BEYOND_THIS beschr�nkt.
