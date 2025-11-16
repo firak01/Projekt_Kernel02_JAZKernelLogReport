@@ -50,9 +50,12 @@ import basic.zBasic.util.file.FileEasyZZZ;
  * 
  */
 //TSA-JAVA0136
-public class ReportLogZZZ implements IConstantZZZ, IReportLogConstantZZZ
-{
-	private static ReportLogZZZ singleton = new ReportLogZZZ(); //muss static sein, wg. getInstance()!!!
+public class ReportLogZZZ implements IConstantZZZ, IReportLogConstantZZZ {
+	// --- Singleton Instanz ---
+	//muss als Singleton static sein. //Muss in der Konkreten Manager Klasse definiert sein, da ja unterschiedlich
+	protected static ReportLogZZZ objLogINSTANCE = new ReportLogZZZ(); //muss static sein, wg. getInstance()!!!
+	
+	// --- Weitere Objekte ---
 	private Logger logger = null;
 	private String basePath = null;
 	private String configFilename=null;
@@ -68,8 +71,8 @@ public class ReportLogZZZ implements IConstantZZZ, IReportLogConstantZZZ
 	 *
 	 * javadoc created by: 0823, 05.01.2007 - 15:19:33
 	 */
-	private static ReportLogZZZ getInstance(){
-		return singleton;
+	private static synchronized ReportLogZZZ getInstance(){
+		return objLogINSTANCE;
 	}
 	
 	
@@ -97,7 +100,7 @@ public class ReportLogZZZ implements IConstantZZZ, IReportLogConstantZZZ
 		 int t = ReflectCodeZZZ.callStackSize() - ReportLogZZZ.INITIAL_STACK_SIZE;
 		 if (t < 1) { t = 0; }
 		
-		if(ReportLogZZZ.singleton.currentLogLevel == ReportLogZZZ.NOT_LOADED){
+		if(ReportLogZZZ.objLogINSTANCE.currentLogLevel == ReportLogZZZ.NOT_LOADED){
 			//Wenn noch kein KernelContext existiert und noch keine currentLogLevel eingestellt ist.
 			 //Merke: Ohne den Kernel Context kann noch nicht einmal die default log4j.conf Datei gebaut werden, darum zumindest auf der Console loggen.
 			 if (kurz) {
@@ -106,19 +109,19 @@ public class ReportLogZZZ implements IConstantZZZ, IReportLogConstantZZZ
 					 System.out.println(StringZZZ.repeat(". ", t) + ReflectCodeZZZ.lastCaller("ReportLogZZZ") + ": " + msg);
 			 }
 						
-		}else if (logLevel <= ReportLogZZZ.singleton.currentLogLevel) {		 
+		}else if (logLevel <= ReportLogZZZ.objLogINSTANCE.currentLogLevel) {		 
 			 //Merke: Ohne den Kernel Context kann noch nicht einmal die default log4j.conf Datei gebaut werden, darum zumindest auf der Console loggen.
 			 if (kurz) {
-			 	if(ReportLogZZZ.singleton.getKernelContext()==null){
+			 	if(ReportLogZZZ.objLogINSTANCE.getKernelContext()==null){
 			 		System.out.println(msg);
 			 	}else{
-			 	    singleton.logger.log (ReportLogCommonZZZ.internalToLog4jLevel(logLevel), msg);
+			 	    objLogINSTANCE.logger.log (ReportLogCommonZZZ.internalToLog4jLevel(logLevel), msg);
 			 	}
 			 } else {	
-				 if(ReportLogZZZ.singleton.getKernelContext()==null){
+				 if(ReportLogZZZ.objLogINSTANCE.getKernelContext()==null){
 					 System.out.println(StringZZZ.repeat(". ", t) + ReflectCodeZZZ.lastCaller("ReportLogZZZ") + ": " + msg);
 				 	}else{
-				 singleton.logger.log (ReportLogCommonZZZ.internalToLog4jLevel(logLevel), ReportLogCommonZZZ.logSymbol (logLevel) +" " +  StringZZZ.repeat(". ", t) + ReflectCodeZZZ.lastCaller("ReportLogZZZ") + ": " + msg);
+				 objLogINSTANCE.logger.log (ReportLogCommonZZZ.internalToLog4jLevel(logLevel), ReportLogCommonZZZ.logSymbol (logLevel) +" " +  StringZZZ.repeat(". ", t) + ReflectCodeZZZ.lastCaller("ReportLogZZZ") + ": " + msg);
 				 	}
 			 }
 		}
@@ -252,14 +255,14 @@ public class ReportLogZZZ implements IConstantZZZ, IReportLogConstantZZZ
 	 * @param newLogLevel
 	 */
 	public static void setLogLevel(int newLogLevel) {
-		singleton.currentLogLevel = newLogLevel;
+		objLogINSTANCE.currentLogLevel = newLogLevel;
 	}
 	/**
 	 * Gibt das Loglevel aus.
 	 * @return
 	 */
 	public static int getLogLevel() {
-		return singleton.currentLogLevel;
+		return objLogINSTANCE.currentLogLevel;
 	}
 	
 	/**
@@ -321,14 +324,14 @@ public class ReportLogZZZ implements IConstantZZZ, IReportLogConstantZZZ
 	 * @param path
 	 */
 	public static final void setBasePath (String path) {
-		singleton.basePath=path;
+		objLogINSTANCE.basePath=path;
 	}
 
 	/**
 	 * @return
 	 */
 	public static String getBasePath() {
-		return singleton.basePath;
+		return objLogINSTANCE.basePath;
 	} 
 	
 	
@@ -350,7 +353,7 @@ public class ReportLogZZZ implements IConstantZZZ, IReportLogConstantZZZ
 	public static int readLogLevel() throws ExceptionZZZ{
 		int iReturn = 0;
 		main:{
-			String stemp = singleton.objContext.getLog4jLevel();
+			String stemp = objLogINSTANCE.objContext.getLog4jLevel();
 			if(StringZZZ.isEmpty(stemp)) break main;
 			
 
@@ -395,15 +398,15 @@ public class ReportLogZZZ implements IConstantZZZ, IReportLogConstantZZZ
 	 * @throws ExceptionZZZ 
 	 */
 	public static String readLogName() throws ExceptionZZZ{
-		return singleton.objContext.getLog4jName();
+		return objLogINSTANCE.objContext.getLog4jName();
 	}
 	
 	public static String readLog4jPathConfig() throws ExceptionZZZ{
-		return singleton.objContext.getLog4jPathConfig();
+		return objLogINSTANCE.objContext.getLog4jPathConfig();
 	}
 	
 	public static String readLog4jFileConfig() throws ExceptionZZZ{
-		return singleton.objContext.getLog4jFileConfig();
+		return objLogINSTANCE.objContext.getLog4jFileConfig();
 	}
 	
 	
@@ -422,33 +425,33 @@ public class ReportLogZZZ implements IConstantZZZ, IReportLogConstantZZZ
 			
 			//1. Verzeichnis.
 			String stemp  = ReportLogZZZ.readLogName();
-			singleton.logger = Logger.getLogger(stemp);
+			objLogINSTANCE.logger = Logger.getLogger(stemp);
 			
 			int itemp = ReportLogZZZ.readLogLevel();
-			singleton.currentLogLevel = itemp;
+			objLogINSTANCE.currentLogLevel = itemp;
 			
 			stemp = ReportLogZZZ.readLog4jPathConfig();
 			
 			File objDirectory = FileEasyZZZ.searchDirectory(stemp);//Suche Verzeichnis, egal ob relativer Pfad und auf WebServer oder in Eclipse Workspace.
 			String sDirectory = objDirectory.getAbsolutePath();
-			singleton.basePath= sDirectory + File.separator;
+			objLogINSTANCE.basePath= sDirectory + File.separator;
 			
 			//2. Dateiname
 			stemp = ReportLogZZZ.readLog4jFileConfig();
-			singleton.configFilename = stemp;
+			objLogINSTANCE.configFilename = stemp;
 			
 			//nun setupLog4j(sFile); ersetzen
-			if (FileEasyZZZ.exists(singleton.basePath + singleton.configFilename) && bRecreateFileConfig == false) {
-				System.out.println (ReflectCodeZZZ.getMethodCurrentName() + "#Loading Log4j Config from file: "+ singleton.basePath+singleton.configFilename);				
+			if (FileEasyZZZ.exists(objLogINSTANCE.basePath + objLogINSTANCE.configFilename) && bRecreateFileConfig == false) {
+				System.out.println (ReflectCodeZZZ.getMethodCurrentName() + "#Loading Log4j Config from file: "+ objLogINSTANCE.basePath+objLogINSTANCE.configFilename);				
 			} else {
-				System.out.println ("Generating NEW Log4j Default Config in file: "+ singleton.basePath+singleton.configFilename);
+				System.out.println ("Generating NEW Log4j Default Config in file: "+ objLogINSTANCE.basePath+objLogINSTANCE.configFilename);
 				boolean btemp = Log4jPropertyGeneratorZZZ.createFile(objContext);	
 				if(btemp==false){
-					ExceptionZZZ ez = new ExceptionZZZ("unable to create log4j-properties file", iERROR_RUNTIME, singleton, ReflectCodeZZZ.getMethodCurrentName());
+					ExceptionZZZ ez = new ExceptionZZZ("unable to create log4j-properties file", iERROR_RUNTIME, objLogINSTANCE, ReflectCodeZZZ.getMethodCurrentName());
 					throw ez;
 				}
 			}
-			PropertyConfigurator.configure (singleton.basePath+singleton.configFilename);
+			PropertyConfigurator.configure (objLogINSTANCE.basePath+objLogINSTANCE.configFilename);
 						
 			bReturn = true;
 		}//END main
@@ -457,7 +460,7 @@ public class ReportLogZZZ implements IConstantZZZ, IReportLogConstantZZZ
 
 	//### Getter / Setter
 	public static void setKernelContext(KernelReportContextProviderZZZ objContext) {
-	 singleton.objContext = objContext;
+	 objLogINSTANCE.objContext = objContext;
 	}
 	public KernelReportContextProviderZZZ getKernelContext(){
 		return this.objContext;
