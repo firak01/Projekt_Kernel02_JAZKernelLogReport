@@ -52,7 +52,7 @@ public class KernelReportContextProviderZZZ extends AbstractKernelUseObjectZZZ {
 		this.sModuleCalling = sModuleCalling;
 	}
 	
-	public String getClassCalling(){
+	public String getClassCalling() throws ExceptionZZZ{
 		/* FGL 20070111 Wenn wir von der M�glichkeit ausgehen, dass der Programm-Name fehlen darf, dann darf in diesem Fall nicht standardm��ig der ReportLogZZZ-Klassenname daf�r verwendet werden.
 		 * 
 		 */
@@ -62,7 +62,7 @@ public class KernelReportContextProviderZZZ extends AbstractKernelUseObjectZZZ {
 		}
 		return this.sClassCallingOrAlias;
 	}
-	public String getModuleCalling(){
+	public String getModuleCalling() throws ExceptionZZZ{
 		//Merke: Über den Modulnamen kann der Kernel die konfigurierte ini-Datei finden.
 		//            In der Ini-Datei kann dann unter dem Programmnamen (eine Section) der gewünschte Parameter ausgelesen werden.
 		if(StringZZZ.isEmpty(this.sModuleCalling)){

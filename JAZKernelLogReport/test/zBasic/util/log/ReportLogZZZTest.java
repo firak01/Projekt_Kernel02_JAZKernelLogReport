@@ -86,14 +86,20 @@ public class ReportLogZZZTest extends TestCase {
 			int itemp2 = ReportLogZZZ.getLogLevel();
 			assertEquals(itemp2, itemp);
 		} catch (ExceptionZZZ ez) {
+			ez.printStackTrace();
 			fail("Method throws an exception." + ez.getMessageLast());
 		}
 	}
 
 	public void testWriting() {
-		ReportLogZZZ.write(ReportLogZZZ.DEBUG, "Das ist ein Test");
+		try {
+			ReportLogZZZ.write(ReportLogZZZ.DEBUG, "Das ist ein Test");
 
-		ReportLogZZZ.write(ReportLogZZZ.DEBUG, "Zweiter Eintrag -TEST");
+			ReportLogZZZ.write(ReportLogZZZ.DEBUG, "Zweiter Eintrag -TEST");
+		} catch (ExceptionZZZ ez) {
+			ez.printStackTrace();
+			fail("Method throws an exception." + ez.getMessageLast());
+		}
 	}
 
 }// END class

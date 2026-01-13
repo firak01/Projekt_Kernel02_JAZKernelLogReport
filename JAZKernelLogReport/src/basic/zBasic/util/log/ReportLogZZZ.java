@@ -81,8 +81,9 @@ public class ReportLogZZZ implements IConstantZZZ, IReportLogConstantZZZ {
 	 * gibt einen Trace nur dann aus, wenn f�r die Klasse ein Trace zugelassen ist.
 	 * @param logLevel
 	 * @param msg
+	 * @throws ExceptionZZZ 
 	 */
-	public static void write (int logLevel, String msg) {
+	public static void write (int logLevel, String msg) throws ExceptionZZZ {
 		write (logLevel, msg, !showTrace );
 	}
 	
@@ -91,8 +92,9 @@ public class ReportLogZZZ implements IConstantZZZ, IReportLogConstantZZZ {
 	 * @param msg - Log Nachricht
 	 * @param kurz - falls kurz==true, wird kein Trace (Anzeige der aufrufenden Klasse)
 	 * ausgegeben.
+	 * @throws ExceptionZZZ 
 	 */	
-	public static void write(int logLevel, String msg, boolean kurz)
+	public static void write(int logLevel, String msg, boolean kurz) throws ExceptionZZZ
 	{
 		/* mehrere sequentielle Aufrufe von System.out.print{,ln} resultieren
 		 * in jeweils einer neuen Zeile.
@@ -133,8 +135,9 @@ public class ReportLogZZZ implements IConstantZZZ, IReportLogConstantZZZ {
 	 * @see write (int, String)
 	 * @param logLevel
 	 * @param msg
+	 * @throws ExceptionZZZ 
 	 */
-	public static void writeString(int logLevel, String msg)
+	public static void writeString(int logLevel, String msg) throws ExceptionZZZ
 	{
 		write(logLevel, msg);
 	}
@@ -145,8 +148,9 @@ public class ReportLogZZZ implements IConstantZZZ, IReportLogConstantZZZ {
 	 * @param logLevel
 	 * @param keys
 	 * @param values
+	 * @throws ExceptionZZZ 
 	 */
-	public static void writePairs(int logLevel, Vector keys, Vector values)
+	public static void writePairs(int logLevel, Vector keys, Vector values) throws ExceptionZZZ
 	{
 		StringWriter sw = new StringWriter();
 		PrintWriter ps = new PrintWriter(sw);
@@ -164,8 +168,9 @@ public class ReportLogZZZ implements IConstantZZZ, IReportLogConstantZZZ {
 	 * eingestellte Loglevel es zuläßt.
 	 * @param logLevel
 	 * @param e
+	 * @throws ExceptionZZZ 
 	 */
-	public static void writeException(int logLevel, Throwable e)
+	public static void writeException(int logLevel, Throwable e) throws ExceptionZZZ
 	{
 		if (e == null) {
 			write (logLevel, "unknown exeption");
@@ -186,7 +191,7 @@ public class ReportLogZZZ implements IConstantZZZ, IReportLogConstantZZZ {
 
 
 	/* setzt lange strings so um, dass write eine saubere ausgabe auf die (Domino) Konsole macht */
-	private static void nicewrite (int logLevel, String message) throws IOException {
+	private static void nicewrite (int logLevel, String message) throws IOException, ExceptionZZZ {
 		String sLine = "";			
 		StringReader reader= new StringReader (message);
 		for (int s =  reader.read();s>0; s =  reader.read())
@@ -204,8 +209,9 @@ public class ReportLogZZZ implements IConstantZZZ, IReportLogConstantZZZ {
 	 * Schreibt eine Exception mit Loglevel <code>ERROR</code> ins Log,
 	 * wenn das im Profildokument eingestellte Loglevel es zul��t. 
 	 * @param e
+	 * @throws ExceptionZZZ 
 	 */
-	public static void writeException(Throwable e)
+	public static void writeException(Throwable e) throws ExceptionZZZ
 	{
 		writeException(ReportLogZZZ.ERROR, e);
 	}
@@ -215,8 +221,9 @@ public class ReportLogZZZ implements IConstantZZZ, IReportLogConstantZZZ {
 	 * eingestellte Loglevel es zul��t.
 	 * @param logLevel
 	 * @param e - auszugebende Enumeration
+	 * @throws ExceptionZZZ 
 	 */
-	public static void writeEnumeration(int logLevel, Enumeration e)
+	public static void writeEnumeration(int logLevel, Enumeration e) throws ExceptionZZZ
 	{
 		if (e == null) {
 			write(logLevel, "writeEnumeration: null");
@@ -232,8 +239,9 @@ public class ReportLogZZZ implements IConstantZZZ, IReportLogConstantZZZ {
 	 * Schreibt einen Vector ins Log
 	 * @param logLevel
 	 * @param v
+	 * @throws ExceptionZZZ 
 	 */
-	public static void writeVector(int logLevel, Vector v)
+	public static void writeVector(int logLevel, Vector v) throws ExceptionZZZ
 	{
 		if (v == null) {
 			write(logLevel, "writeVector: null");
@@ -284,32 +292,36 @@ public class ReportLogZZZ implements IConstantZZZ, IReportLogConstantZZZ {
 	/**
 	 * Schreibt <i>msg</i> mit dem Level ERROR in die Logdatei.
 	 * @param msg
+	 * @throws ExceptionZZZ 
 	 */
-	public static void error(String msg) {
+	public static void error(String msg) throws ExceptionZZZ {
 		write(ReportLogZZZ.ERROR, msg); 
 	}
 	
 	/**
 	 * Schreibt <i>msg</i> mit dem Level WARN in die Logdatei.
 	 * @param msg
+	 * @throws ExceptionZZZ 
 	 */
-	public static void warn(String msg) {
+	public static void warn(String msg) throws ExceptionZZZ {
 		write(ReportLogZZZ.WARN, msg);
 	}
 	
 	/**
 	 * Schreibt <i>msg</i> mit dem Level INFO in die Logdatei.
 	 * @param msg
+	 * @throws ExceptionZZZ 
 	 */
-	public static void info(String msg) {
+	public static void info(String msg) throws ExceptionZZZ {
 		write(ReportLogZZZ.INFO, msg);
 	}
 	
 	/**
 	 * Schreibt <i>msg</i> mit dem Level DEBUG in die Logdatei.
 	 * @param msg
+	 * @throws ExceptionZZZ 
 	 */
-	public static void debug(String msg) {
+	public static void debug(String msg) throws ExceptionZZZ {
 		write(ReportLogZZZ.DEBUG, msg);
 	}
 	
