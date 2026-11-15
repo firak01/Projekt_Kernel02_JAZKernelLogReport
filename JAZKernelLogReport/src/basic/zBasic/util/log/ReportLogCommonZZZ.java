@@ -4,10 +4,10 @@ import org.apache.log4j.Level;
 
 import basic.zBasic.ExceptionZZZ;
 import basic.zBasic.IConstantZZZ;
-import basic.zBasic.ReflectCodeZZZ;
+import basic.zBasic.reflection.ReflectCodeZZZ;
 import basic.zBasic.util.datatype.string.StringZZZ;
 
-/**Dies Klasse enthält nur statische MEthodnen und Konstanten, die dann von allen ...ReportLog-Klassen genutzt werden können.
+/**Dies Klasse enthï¿½lt nur statische MEthodnen und Konstanten, die dann von allen ...ReportLog-Klassen genutzt werden kï¿½nnen.
  * @author lindhaueradmin
  *
  */
@@ -46,7 +46,7 @@ public class ReportLogCommonZZZ implements IConstantZZZ, IReportLogConstantZZZ{
 			
 			if(StringZZZ.isNumeric(sLevel)){
 				iReturn = Integer.parseInt(sLevel);
-				//TODO: Ggf ist noch eine überprüfung auf den konkreten wert notwendig, d.h. die Zahl muss einer der Konstanten entsprechen
+				//TODO: Ggf ist noch eine ï¿½berprï¿½fung auf den konkreten wert notwendig, d.h. die Zahl muss einer der Konstanten entsprechen
 			}else{
 				if(sLevel.equalsIgnoreCase("FATAL") | sLevel.equalsIgnoreCase("ERROR")){
 					iReturn = ReportLogCommonZZZ.ERROR;
@@ -68,7 +68,7 @@ public class ReportLogCommonZZZ implements IConstantZZZ, IReportLogConstantZZZ{
 		return iReturn;
 	}
 	
-	/**Gibt einen für Log4j gültigen String zurück, wie er z.B. im derm Log4j-Konfigurations-File verwendet werden kann
+	/**Gibt einen fï¿½r Log4j gï¿½ltigen String zurï¿½ck, wie er z.B. im derm Log4j-Konfigurations-File verwendet werden kann
 	* @return String
 	* @param iReportLogLevel
 	* 
@@ -91,7 +91,7 @@ public class ReportLogCommonZZZ implements IConstantZZZ, IReportLogConstantZZZ{
 	}
 	
 	/**
-	 * Erzeugt Symbole, um im Log die verschiedenen Level unterscheiden zu können.
+	 * Erzeugt Symbole, um im Log die verschiedenen Level unterscheiden zu kï¿½nnen.
 	 * @param i
 	 * @return
 	 */
